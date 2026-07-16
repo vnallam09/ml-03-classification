@@ -198,3 +198,4 @@ __pycache__/
 
 # WHY: Notebook checkpoint state is generated.
 .ipynb_checkpoints/
+.claude/
