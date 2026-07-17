@@ -50,6 +50,11 @@ uv run python -m mlstudio.app_venkat_teja
 uv run python -m mlstudio.app_mushrooms_venkat_teja
 ```
 
+Code links:
+
+- [app_venkat_teja.py](src/mlstudio/app_venkat_teja.py) (Phase 4)
+- [app_mushrooms_venkat_teja.py](src/mlstudio/app_mushrooms_venkat_teja.py) (Phase 5)
+
 See the full write-up in [docs/index.md](docs/index.md).
 
 ## Instructions (pro-analytics-02)
