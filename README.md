@@ -111,6 +111,9 @@ uvx pre-commit run --all-files
 # run the example module to verify the environment (.venv/)
 uv run python -m mlstudio.app_case
 
+# run my version (Phase 4: classifies pass/fail with a decision tree)
+uv run python -m mlstudio.app_venkat_teja
+
 # run common chores
 uv run ruff format .
 uv run ruff check . --fix

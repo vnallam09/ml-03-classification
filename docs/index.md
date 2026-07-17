@@ -21,19 +21,40 @@ to get the example projects running on your machine.
 
 ## Phase 4. Technical Modification
 
-Describe your small technical modification to the example project.
+**What I changed.** I copied the example `app_case.py` to `app_venkat_teja.py`
+(leaving the example untouched) and converted it from regression to
+classification. A new `derive_target()` step creates a categorical target,
+`passed` ("pass" if `score >= 75`, else "fail"), a `DecisionTreeClassifier`
+replaces `LinearRegression`, and the evaluation now reports accuracy, a
+confusion matrix, and a classification report instead of MAE and R-squared.
+The coefficient chart is replaced with a confusion matrix heatmap.
 
-Include:
+**Why I chose it.** This module is about classification, and the smallest
+change that demonstrates its core skill is turning the example's continuous
+target into a category and evaluating the classifier the way this module
+teaches: confusion matrix, precision, recall, and F1.
 
-- What you changed
-- Why you chose that change
-- How you verified that it worked
-- What result, output, chart, metric, or behavior confirmed the change
+**How I verified it.** I ran `uv run python -m mlstudio.app_venkat_teja` and
+confirmed the log shows the derived target step, a 6 pass / 4 fail class
+balance, the confusion matrix, and the classification report. I also ran
+`ruff`, `pyright`, `pytest`, and the original `app_case` to confirm nothing
+else broke.
 
-Compared with the example project,
-explain what is different and why the change matters.
+**What confirmed the change.** The summary now reports the categorical target
+(`passed`) with its class balance, and the log shows accuracy (0.67 on the 3
+held-out rows) with a full per-class precision/recall/F1 report. The one miss
+is instructive: the tree misclassified a borderline student (score 72, just
+under the 75 threshold) as "pass" — a concrete illustration of why accuracy
+alone can mislead on tiny, imbalanced test sets. The single-case prediction
+changed from a numeric score (83.4) to a class label ("pass") — exactly the
+behavior shift classification implies.
 
-Was it easy, or surprisingly challenging and why do you think so?
+**Why it matters / difficulty.** Compared with the example, the model now
+answers a categorical question ("will this student pass?") instead of
+estimating a number, which requires different metrics and interpretation.
+It was straightforward; the one gotcha was stratifying the train-test split —
+with only 10 rows, an unstratified split can leave a class out of the test
+set and make the metrics meaningless.
 
 ## Phase 5. Custom Project
 
