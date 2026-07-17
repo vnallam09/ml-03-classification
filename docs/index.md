@@ -58,69 +58,99 @@ set and make the metrics meaningless.
 
 ## Phase 5. Custom Project
 
-Describe your custom project and how you made your modeling decisions.
+My custom project classifies mushrooms as **edible or poisonous** and compares
+two classifiers — a **Decision Tree** and a **Random Forest** — on the same
+data, implemented in `src/mlstudio/app_mushrooms_venkat_teja.py`:
 
-Be specific about what changed from the example project.
+```shell
+uv run python -m mlstudio.app_mushrooms_venkat_teja
+```
 
 ### Basis and Data
 
-Describe the dataset, input, or example you started with.
-
-Include:
-
-- The original example dataset or input
-- The data source
-- Why you chose it, kept it, or changed it
-- Any important limitations or assumptions
+The example project used the tiny synthetic `hours_scores_case.csv`
+(10 students). For my custom project I chose the **UCI Mushroom dataset**
+(`data/raw/mushrooms.csv`): 8,124 mushrooms from the Agaricus and Lepiota
+families, 22 categorical features describing physical characteristics
+(cap shape, odor, gill color, habitat, ...), and a nearly balanced target
+(4,208 edible / 3,916 poisonous). Limitations: the data describes only two
+mushroom families from a 1981 field guide, and `stalk_root` has 2,480 missing
+values coded `?`, which I kept as their own "missing" category since an
+unknown stalk root may itself carry signal. This dataset should never be
+used to decide whether a real mushroom is safe to eat.
 
 ### Modeling Approach
 
-Describe the problem type and modeling approach for this project.
-
-Include:
-
-- Is this supervised or unsupervised and how do you know
-- Is this classification, regression, clustering, recommendation, forecasting, or another type of ML task
-- What kind of target works well for this approach
-- Why your selected model or method is appropriate
+This is **supervised classification**: every row has a known label
+(edible/poisonous), and the target is a category, not a number. Tree-based
+models are a natural fit because the features are all categorical and
+tree splits ("does it have a foul odor?") mirror how a field guide reasons.
+Comparing a single Decision Tree against a Random Forest (100 trees, each
+trained on a bootstrap sample with random feature subsets) directly
+exercises this module's theme: choosing a classifier based on evidence.
 
 ### Target
 
-Describe the example target variable.
-
-Then describe your chosen target variable.
-
-Explain how your target choice changes the modeling approach, interpretation, or evaluation.
+The example predicted a continuous score (regression). My target is the
+binary `class` column mapped to readable labels (`p` → poisonous,
+`e` → edible). A categorical target changes evaluation entirely: instead of
+MAE/R-squared, I use accuracy, confusion matrices, and per-class
+precision/recall — which matters here because the two error types are not
+equal (calling a poisonous mushroom edible is far worse than the reverse).
 
 ### Features
 
-Describe the example features.
-
-Then describe the features you used to predict your target.
-
-Explain what you changed, added, removed, or kept and why.
+The example used 5 numeric study-habit features. My 22 features are all
+categorical letter codes, so I one-hot encoded them into 117 binary columns
+(`odor=n`, `gill_size=b`, ...) since scikit-learn trees require numeric
+input. I kept all 22 features and let the models rank them: the Random
+Forest's feature importances put `odor` columns at the top, matching the
+well-known result that odor alone nearly determines the class.
 
 ### Evaluation and Results
 
-Describe how you evaluated your model.
+I evaluated both models with accuracy, confusion matrices, and
+classification reports in two scenarios (all logged in `project.log`):
 
-Include:
+| Scenario | Decision Tree | Random Forest |
+|---|---|---|
+| Standard 70/30 split (5,686 train rows) | 1.0000 | 1.0000 |
+| Scarce data (40 train rows, tested on 8,084) | 0.8921 | 0.9800 |
 
-- The metric or evidence you used
-- The main result
-- Whether the result was useful, interesting, surprising, or disappointing
-- Any weakness, limitation, or next improvement
+With plentiful data both models are perfect — the dataset is fully
+separable, so the comparison is a tie. The scarce-data scenario is where
+the ensemble earns its keep: averaging 100 diverse trees generalizes far
+better from 40 examples than one tree can (0.98 vs 0.89). The most
+interesting (and surprising) detail is in the confusion matrices: the
+forest's higher accuracy comes almost entirely from fixing the tree's 752
+false-poisonous errors, while on the *dangerous* error (poisonous predicted
+edible) the tree was actually slightly better (120 vs 154). Accuracy alone
+would hide that trade-off — exactly why this module teaches precision and
+recall. Next improvement: tune the forest's decision threshold to push
+poisonous recall toward 1.0 at the cost of some edible precision.
+
+![Decision Tree vs Random Forest accuracy](./images/mushrooms_dt_vs_rf.png)
+
+![Random Forest top feature importances](./images/mushrooms_feature_importance.png)
 
 ### Summary
 
-Summarize your custom project.
+I implemented a supervised classification module that loads the UCI Mushroom
+dataset, one-hot encodes 22 categorical features, trains a Decision Tree and
+a Random Forest on identical splits, and compares them with the evaluation
+tools this module teaches. Both models are perfect with abundant data; with
+scarce data the Random Forest wins on accuracy (0.98 vs 0.89) while the
+confusion matrices reveal it slightly loses on poisonous recall — the metric
+that matters most in this domain. I learned that "which model is better"
+depends on the data budget *and* on which errors are costly, and that
+per-class metrics are how you see it. These skills transfer directly to any
+categorical decision problem: medical triage, loan approval, spam filtering,
+or equipment fault detection.
 
-Include:
-
-- How you implemented your custom model
-- What results you got
-- What you learned
-- How well you exercised the skills covered in this project
-- What kinds of real problems you could apply these skills to in the future
-
-Display at least one image or screenshot showing your work.
+**Decision Tree vs Random Forest, in short:** a Decision Tree is one set of
+if/then rules — fast to train, easy to read, but high-variance: with little
+data it memorizes noise and its accuracy drops. A Random Forest trains many
+trees on random subsets of rows and features and lets them vote, trading
+interpretability and speed for stability and better generalization. Use a
+tree when you need an explainable model or a quick baseline; use a forest
+when predictive performance matters and the data is limited or noisy.

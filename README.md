@@ -38,6 +38,20 @@ You'll work with these areas:
 - **pyproject.toml** - update authorship & links
 - **zensical.toml** - update authorship & links
 
+## My Project Modules (Phases 4 and 5)
+
+Run my versions alongside the example:
+
+```shell
+# Phase 4: classify pass/fail with a decision tree (hours_scores_case)
+uv run python -m mlstudio.app_venkat_teja
+
+# Phase 5: mushrooms - edible vs poisonous, decision tree vs random forest
+uv run python -m mlstudio.app_mushrooms_venkat_teja
+```
+
+See the full write-up in [docs/index.md](docs/index.md).
+
 ## Instructions (pro-analytics-02)
 
 Follow the
@@ -113,6 +127,9 @@ uv run python -m mlstudio.app_case
 
 # run my version (Phase 4: classifies pass/fail with a decision tree)
 uv run python -m mlstudio.app_venkat_teja
+
+# run my custom project (Phase 5: mushrooms, decision tree vs random forest)
+uv run python -m mlstudio.app_mushrooms_venkat_teja
 
 # run common chores
 uv run ruff format .

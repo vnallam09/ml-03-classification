@@ -57,6 +57,25 @@ UCI ML Repository:
 
 Public domain (U.S. Government data, CDC).
 
+## mushrooms.csv (My Phase 5 Custom Project Dataset)
+
+The UCI Mushroom dataset: 8,124 hypothetical mushroom samples from the
+Agaricus and Lepiota families, 22 categorical features, and a binary class
+(edible vs poisonous). A header row with descriptive column names was added;
+`stalk_root` codes missing values as `?`.
+
+### Citation
+
+Mushroom [Dataset]. (1981). UCI Machine Learning Repository.
+<https://doi.org/10.24432/C5959T>
+
+Original source: Audubon Society Field Guide to North American Mushrooms
+(1981). G. H. Lincoff (Pres.), New York: Alfred A. Knopf.
+
+### License
+
+Creative Commons Attribution 4.0 International (CC BY 4.0).
+
 ## Option 2. Choose Another Seaborn Dataset
 
 For this exercise, you can choose another Seaborn dataset.
