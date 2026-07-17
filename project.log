@@ -1164,3 +1164,190 @@ weighted avg       0.98      0.98      0.98      8084
 2026-07-16 22:22:33 | INFO | ML | ========================
 2026-07-16 22:22:33 | INFO | ML | Executed successfully!
 2026-07-16 22:22:33 | INFO | ML | ========================
+2026-07-16 23:02:49 | INFO | ML | === RUN START ===
+2026-07-16 23:02:49 | INFO | ML | project=ML
+2026-07-16 23:02:49 | INFO | ML | repo_dir=ml-03-classification
+2026-07-16 23:02:49 | INFO | ML | python=3.14.0
+2026-07-16 23:02:49 | INFO | ML | os=Windows 11
+2026-07-16 23:02:49 | INFO | ML | shell=powershell
+2026-07-16 23:02:49 | INFO | ML | cwd=.
+2026-07-16 23:02:49 | INFO | ML | github_actions=False
+2026-07-16 23:02:49 | INFO | ML | === RUN START ===
+2026-07-16 23:02:49 | INFO | ML | project=ML
+2026-07-16 23:02:49 | INFO | ML | repo_dir=ml-03-classification
+2026-07-16 23:02:49 | INFO | ML | python=3.14.0
+2026-07-16 23:02:49 | INFO | ML | os=Windows 11
+2026-07-16 23:02:49 | INFO | ML | shell=powershell
+2026-07-16 23:02:49 | INFO | ML | cwd=.
+2026-07-16 23:02:49 | INFO | ML | github_actions=False
+2026-07-16 23:02:49 | INFO | ML | ========================
+2026-07-16 23:02:49 | INFO | ML | START main()
+2026-07-16 23:02:49 | INFO | ML | ========================
+2026-07-16 23:02:49 | INFO | ML | Load dataset..............
+2026-07-16 23:02:49 | INFO | ML | Loading dataset: mushrooms
+2026-07-16 23:02:49 | INFO | ML | Loaded: 8124 rows, 23 columns
+2026-07-16 23:02:49 | DEBUG | ML | 
+  class cap_shape cap_surface cap_color bruises odor gill_attachment gill_spacing gill_size gill_color stalk_shape  \
+0     p         x           s         n       t    p               f            c         n          k           e   
+1     e         x           s         y       t    a               f            c         b          k           e   
+2     e         b           s         w       t    l               f            c         b          n           e   
+3     p         x           y         w       t    p               f            c         n          n           e   
+4     e         x           s         g       f    n               f            w         b          k           t   
+
+  stalk_root stalk_surface_above_ring stalk_surface_below_ring stalk_color_above_ring stalk_color_below_ring  \
+0          e                        s                        s                      w                      w   
+1          c                        s                        s                      w                      w   
+2          c                        s                        s                      w                      w   
+3          e                        s                        s                      w                      w   
+4          e                        s                        s                      w                      w   
+
+  veil_type veil_color ring_number ring_type spore_print_color population habitat  
+0         p          w           o         p                 k          s       u  
+1         p          w           o         p                 n          n       g  
+2         p          w           o         p                 n          n       m  
+3         p          w           o         p                 k          s       u  
+4         p          w           o         e                 n          a       g  
+2026-07-16 23:02:49 | INFO | ML | Inspect dataset...........
+2026-07-16 23:02:49 | INFO | ML | Column names
+2026-07-16 23:02:49 | DEBUG | ML | ['class', 'cap_shape', 'cap_surface', 'cap_color', 'bruises', 'odor', 'gill_attachment', 'gill_spacing', 'gill_size', 'gill_color', 'stalk_shape', 'stalk_root', 'stalk_surface_above_ring', 'stalk_surface_below_ring', 'stalk_color_above_ring', 'stalk_color_below_ring', 'veil_type', 'veil_color', 'ring_number', 'ring_type', 'spore_print_color', 'population', 'habitat']
+2026-07-16 23:02:49 | INFO | ML | Dataset shape: 8124 rows, 23 columns
+2026-07-16 23:02:49 | INFO | ML | Class balance:
+class
+e    4208
+p    3916
+Name: count, dtype: int64
+2026-07-16 23:02:49 | INFO | ML | Check data quality........
+2026-07-16 23:02:49 | INFO | ML | Missing values by column (as NaN)
+2026-07-16 23:02:49 | DEBUG | ML | 
+class                       0
+cap_shape                   0
+cap_surface                 0
+cap_color                   0
+bruises                     0
+odor                        0
+gill_attachment             0
+gill_spacing                0
+gill_size                   0
+gill_color                  0
+stalk_shape                 0
+stalk_root                  0
+stalk_surface_above_ring    0
+stalk_surface_below_ring    0
+stalk_color_above_ring      0
+stalk_color_below_ring      0
+veil_type                   0
+veil_color                  0
+ring_number                 0
+ring_type                   0
+spore_print_color           0
+population                  0
+habitat                     0
+dtype: int64
+2026-07-16 23:02:49 | INFO | ML | Cells coded '?' (missing): 2480
+2026-07-16 23:02:49 | INFO | ML | Duplicate row count: 0
+2026-07-16 23:02:49 | INFO | ML | Encode features...........
+2026-07-16 23:02:49 | INFO | ML | Creating encoded modeling view
+2026-07-16 23:02:49 | INFO | ML | Encoded view: 8124 rows, 22 features -> 117 one-hot columns
+2026-07-16 23:02:49 | INFO | ML | Compare models (70/30 split)......
+2026-07-16 23:02:49 | INFO | ML | ========================
+2026-07-16 23:02:49 | INFO | ML | COMPARE MODELS: standard 70/30 split
+2026-07-16 23:02:49 | INFO | ML | ========================
+2026-07-16 23:02:49 | INFO | ML | Training rows: 5686, test rows: 2438
+2026-07-16 23:02:49 | INFO | ML | --- Decision Tree ---
+2026-07-16 23:02:49 | INFO | ML | Decision Tree accuracy: 1.0000
+2026-07-16 23:02:49 | INFO | ML | Decision Tree confusion matrix (rows=true, cols=predicted)
+2026-07-16 23:02:49 | INFO | ML | 
+[[1263    0]
+ [   0 1175]]
+2026-07-16 23:02:49 | INFO | ML | Decision Tree classification report
+2026-07-16 23:02:50 | INFO | ML | 
+              precision    recall  f1-score   support
+
+      edible       1.00      1.00      1.00      1263
+   poisonous       1.00      1.00      1.00      1175
+
+    accuracy                           1.00      2438
+   macro avg       1.00      1.00      1.00      2438
+weighted avg       1.00      1.00      1.00      2438
+
+2026-07-16 23:02:50 | INFO | ML | --- Random Forest ---
+2026-07-16 23:02:50 | INFO | ML | Random Forest accuracy: 1.0000
+2026-07-16 23:02:50 | INFO | ML | Random Forest confusion matrix (rows=true, cols=predicted)
+2026-07-16 23:02:50 | INFO | ML | 
+[[1263    0]
+ [   0 1175]]
+2026-07-16 23:02:50 | INFO | ML | Random Forest classification report
+2026-07-16 23:02:50 | INFO | ML | 
+              precision    recall  f1-score   support
+
+      edible       1.00      1.00      1.00      1263
+   poisonous       1.00      1.00      1.00      1175
+
+    accuracy                           1.00      2438
+   macro avg       1.00      1.00      1.00      2438
+weighted avg       1.00      1.00      1.00      2438
+
+2026-07-16 23:02:50 | INFO | ML | Compare models (scarce training)..
+2026-07-16 23:02:50 | INFO | ML | ========================
+2026-07-16 23:02:50 | INFO | ML | COMPARE MODELS: scarce training data
+2026-07-16 23:02:50 | INFO | ML | ========================
+2026-07-16 23:02:50 | INFO | ML | Training rows: 40, test rows: 8084
+2026-07-16 23:02:50 | INFO | ML | --- Decision Tree ---
+2026-07-16 23:02:50 | INFO | ML | Decision Tree accuracy: 0.8921
+2026-07-16 23:02:50 | INFO | ML | Decision Tree confusion matrix (rows=true, cols=predicted)
+2026-07-16 23:02:50 | INFO | ML | 
+[[3435  752]
+ [ 120 3777]]
+2026-07-16 23:02:50 | INFO | ML | Decision Tree classification report
+2026-07-16 23:02:50 | INFO | ML | 
+              precision    recall  f1-score   support
+
+      edible       0.97      0.82      0.89      4187
+   poisonous       0.83      0.97      0.90      3897
+
+    accuracy                           0.89      8084
+   macro avg       0.90      0.89      0.89      8084
+weighted avg       0.90      0.89      0.89      8084
+
+2026-07-16 23:02:50 | INFO | ML | --- Random Forest ---
+2026-07-16 23:02:51 | INFO | ML | Random Forest accuracy: 0.9800
+2026-07-16 23:02:51 | INFO | ML | Random Forest confusion matrix (rows=true, cols=predicted)
+2026-07-16 23:02:51 | INFO | ML | 
+[[4179    8]
+ [ 154 3743]]
+2026-07-16 23:02:51 | INFO | ML | Random Forest classification report
+2026-07-16 23:02:51 | INFO | ML | 
+              precision    recall  f1-score   support
+
+      edible       0.96      1.00      0.98      4187
+   poisonous       1.00      0.96      0.98      3897
+
+    accuracy                           0.98      8084
+   macro avg       0.98      0.98      0.98      8084
+weighted avg       0.98      0.98      0.98      8084
+
+2026-07-16 23:02:51 | INFO | ML | Predict one case..........
+2026-07-16 23:02:51 | INFO | ML | Predicting one new case
+2026-07-16 23:02:51 | INFO | ML | Predicted result for the sample mushroom: poisonous
+2026-07-16 23:02:51 | INFO | ML | Create charts.............
+2026-07-16 23:02:51 | INFO | ML | Creating chart: top 10 random forest feature importances
+2026-07-16 23:02:51 | INFO | ML | Creating chart: accuracy comparison
+2026-07-16 23:02:52 | INFO | ML | Summarize workflow........
+2026-07-16 23:02:52 | INFO | ML | ========================
+2026-07-16 23:02:52 | INFO | ML | SUMMARY
+2026-07-16 23:02:52 | INFO | ML | ========================
+2026-07-16 23:02:52 | INFO | ML | Dataset: mushrooms
+2026-07-16 23:02:52 | INFO | ML | Rows: 8124
+2026-07-16 23:02:52 | INFO | ML | Target: class (edible vs poisonous)
+2026-07-16 23:02:52 | INFO | ML | 70/30 split      | Decision Tree: 1.0000
+2026-07-16 23:02:52 | INFO | ML | 70/30 split      | Random Forest: 1.0000
+2026-07-16 23:02:52 | INFO | ML | 40 training rows | Decision Tree: 0.8921
+2026-07-16 23:02:52 | INFO | ML | 40 training rows | Random Forest: 0.9800
+2026-07-16 23:02:52 | INFO | ML | ----- in a script, call plt.show() once at the end to display all charts -----
+2026-07-16 23:02:52 | INFO | ML | ----- in a script, CLOSE the chart windows with the close button to CONTINUE -----
+2026-07-16 23:05:59 | INFO | ML | Workflow complete
+2026-07-16 23:05:59 | INFO | ML | IMPORTANT: This script creates chart windows.
+2026-07-16 23:05:59 | INFO | ML | Close chart windows and terminate this process with CTRL+c as needed.
+2026-07-16 23:05:59 | INFO | ML | ========================
+2026-07-16 23:06:00 | INFO | ML | Executed successfully!
+2026-07-16 23:06:00 | INFO | ML | ========================
